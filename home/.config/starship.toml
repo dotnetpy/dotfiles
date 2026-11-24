@@ -1,0 +1,190 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Pastel Powerline preset, customized.
+
+add_newline = false
+
+format = """
+[](#9A348E)\
+$hostname\
+[](bg:#DA627D fg:#9A348E)\
+$directory\
+[](fg:#DA627D bg:#FCA17D)\
+$git_branch\
+$git_status\
+[](fg:#FCA17D bg:#86BBD8)\
+$c\
+$cpp\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$golang\
+$gradle\
+$haskell\
+$java\
+$kotlin\
+$lua\
+$nodejs\
+$php\
+$python\
+$ruby\
+$rust\
+$swift\
+$zig\
+[](fg:#86BBD8 bg:#33658A)\
+$time\
+[](fg:#33658A)\
+"""
+
+# Hostname
+
+[username]
+disabled = true
+
+[hostname]
+ssh_only = false
+trim_at = "."
+style = "bg:#9A348E"
+format = "[$hostname ]($style)"
+disabled = false
+
+# Directory
+
+[directory]
+style = "bg:#DA627D"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+
+# Git
+
+[git_branch]
+symbol = ""
+style = "bg:#FCA17D"
+format = '[ $symbol $branch ]($style)'
+
+[git_status]
+style = "bg:#FCA17D"
+format = '[$all_status$ahead_behind ]($style)'
+
+# Languages
+
+[c]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[ $symbol$version ]($style)'
+
+[cpp]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[ $symbol$version ]($style)'
+
+[python]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[ $symbol$version ]($style)'
+
+[golang]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[ $symbol$version ]($style)'
+
+[dotnet]
+symbol = "\uE77F "
+style = "bg:#86BBD8"
+format = '[ $symbol$version ]($style)'
+
+[nodejs]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[ $symbol$version ]($style)'
+
+[bun]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[ $symbol$version ]($style)'
+
+[deno]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[ $symbol$version ]($style)'
+
+[rust]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[ $symbol$version ]($style)'
+
+[java]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[ $symbol$version ]($style)'
+
+[kotlin]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[ $symbol$version ]($style)'
+
+[swift]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[ $symbol$version ]($style)'
+
+[dart]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[ $symbol$version ]($style)'
+
+[ruby]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[ $symbol$version ]($style)'
+
+[php]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[ $symbol$version ]($style)'
+
+[lua]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[ $symbol$version ]($style)'
+
+[elixir]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[ $symbol$version ]($style)'
+
+[elm]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[ $symbol$version ]($style)'
+
+[haskell]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[ $symbol$version ]($style)'
+
+[gradle]
+style = "bg:#86BBD8"
+format = '[ $symbol$version ]($style)'
+
+[zig]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[ $symbol$version ]($style)'
+
+# Time
+
+[time]
+disabled = false
+time_format = "%H:%M"
+style = "bg:#33658A"
+format = '[  $time ]($style)'

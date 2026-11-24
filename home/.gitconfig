@@ -1,0 +1,57 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = Alan Viana
+	email = 358221236+dotnetpy@users.noreply.github.com
+	useConfigOnly = true
+[core]
+	editor = code --wait
+	autocrlf = input
+	quotepath = false
+	excludesfile = ~/.config/git/ignore
+[init]
+	defaultBranch = main
+[color]
+	ui = auto
+[diff]
+	algorithm = histogram
+	renames = true
+[merge]
+	conflictstyle = zdiff3
+	renames = true
+[fetch]
+	prune = true
+[push]
+	autoSetupRemote = true
+	default = simple
+[rerere]
+	enabled = true
+[commit]
+	verbose = true
+[alias]
+	st = status
+	co = checkout
+	br = branch
+	ci = commit
+	sw = switch
+	lg = log --oneline --graph --decorate --all
+	last = log -1 HEAD --stat
+	unstage = restore --staged
+	amend = commit --amend --no-edit
+[pull]
+	rebase = true
+[rebase]
+	autoStash = true
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential

@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install tools
+        run: brew install shellcheck shfmt gitleaks
+
+      - name: Lint
+        run: make lint
+
+      - name: Scan for secrets
+        run: gitleaks git --redact --verbose
+
+      - name: Link dry run
+        run: HOME="$(mktemp -d)" bash scripts/link.sh --dry-run
