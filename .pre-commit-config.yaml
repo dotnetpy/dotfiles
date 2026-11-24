@@ -13,6 +13,7 @@ repos:
         entry: shellcheck -x
         language: system
         types: [shell]
+        exclude_types: [zsh] # ShellCheck does not support zsh
       - id: shfmt
         name: shfmt
         entry: shfmt -d -i 2 -ci
