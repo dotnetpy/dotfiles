@@ -16,24 +16,37 @@ Configuration and setup scripts for my macOS development environment on Apple Si
 
 - macOS on Apple Silicon.
 - An Apple Account signed in to the App Store, for the apps installed with `mas`.
+- The App Management permission for your terminal (System Settings > Privacy & Security > App Management). Without it macOS blocks Homebrew from changing apps in `/Applications`, and casks such as `1password` fail with `Operation not permitted`. The install script opens this setting for you.
 
 ## Installation
 
-On a new Mac:
+On a new Mac, run this one command. Nothing else is needed first: a new Mac has no Git, and the script installs it.
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/dotnetpy/dotfiles/main/install.sh | bash
 ```
 
-The script installs the Xcode Command Line Tools and Homebrew, clones this repository to `~/dotfiles` and runs `make install`. If the Command Line Tools are not installed yet, run it again once their installation finishes.
+The script:
 
-To install from an existing clone:
+1. Installs the Xcode Command Line Tools (which provide `git` and `make`) and waits for the installation to finish.
+2. Installs Homebrew.
+3. Clones this repository to `~/dotfiles` over HTTPS, so no SSH key is needed.
+4. Opens the App Management setting and waits while you turn it on for your terminal.
+5. Runs `make install`.
+
+It is safe to run again. `make install` runs every step even if one fails, then reports the failure, so a single broken package does not leave the rest of the Mac unconfigured.
+
+On a Mac that already has Git (the Command Line Tools), you can also install from a clone:
 
 ```bash
 git clone https://github.com/dotnetpy/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 make install
 ```
+
+### Troubleshooting
+
+- **`Operation not permitted` on an app in `/Applications`**: run `make permissions`, turn on your terminal, reopen it and run `make install` again. If the app was left in `/Applications` but Homebrew no longer manages it, reinstall it over the existing copy with `brew install --cask --force <name>`.
 
 ## Usage
 
@@ -44,6 +57,7 @@ make install
 | `make link` | Symlink `home/` into `$HOME`, backing up any existing files |
 | `make doctor` | Check that every package is installed and every link is in place |
 | `make capture` | Report packages and applications installed on this Mac but not declared here |
+| `make permissions` | Open the App Management setting that Homebrew needs |
 | `make lint` | Run ShellCheck and shfmt |
 
 Run `make` without arguments to list every target.
